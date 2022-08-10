@@ -1,0 +1,104 @@
+th.view {
+    width: 200px;
+    vertical-align: top;
+    text-align: left;
+    color: #666666;
+}
+
+td.view {
+    padding-right: 30px;
+}
+
+tr.view {
+    margin: 20px;
+}
+
+table.view {
+    border-collapse: separate;
+    border-spacing: 10px 20px;
+    width: 100%;
+}
+
+.newsContainer {
+    border: 4px solid #c3c3c3;
+    margin-left: 350px;
+    margin-right: 80px;
+}
+
+.newsPreviewList {
+    border: 4px solid #c3c3c3;
+    margin-left: 450px;
+    margin-right: 280px;
+}
+
+.newsPreview {
+    border: 1px solid #444444;
+    background-color: #eeeeee;
+}
+
+.newsPreviewHead {
+
+}
+
+.newsPreviewTitle {
+    text-align: left;
+    float: left;
+}
+
+.newsPreviewDate {
+    text-align: right;
+}
+
+.newsPreviewBody {
+
+}
+
+.newsPreviewBrief {
+    text-align: left;
+}
+
+.newsPreviewManagePanel {
+    text-align: right;
+}
+
+.newsPreviewManageElement {
+    margin: 10px;
+}
+
+.languageSelector {
+    margin: 10px;
+}
+
+.linksPanel {
+    padding-right: 10px;
+    float: left;
+    background-color: #c3c3c3;
+}
+
+.linksPanelHead {
+    background-color: #737373;
+    margin: 10px;
+    color: white;
+    text-align: center;
+}
+
+.linksPanelBody {
+    padding-right: 20px;
+    background-color: white;
+    margin-left: 40px;
+    margin-right: 10px;
+}
+
+.linksPanelBodyContent {
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.saveIndents {
+    white-space:pre-line;
+}
+
+.formError {
+    font-size: 18px;
+    color: #ee0228;
+}

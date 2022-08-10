@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<title>
+			News Edit
+		</title>
+		<link rel="stylesheet" type="text/css" href="styles/style.css">
+		<script type="text/javascript">
+			function getDate(){
+    			var today = new Date();
+    			dateVal = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+    			console.log('dateVal = ' + dateVal)
+				document.getElementById("dateId").value = dateVal;
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<header>
+				<div style="margin-left: 30px">
+					<h2 style="color: blue">News Management</h2>
+				</div>
+				<div align="right">
+					<a href="" style="margin: 10px">English</a>
+					<a href="" style="margin: 10px">Russian</a>
+				</div>
+				<hr size="15" noshade="noshade" />
+			</header>
+		</div>
+
+		<div >
+			<div style="width: 200px; float: left; background-color: #c3c3c3">
+				<h3 style="background-color: #737373; margin: 10px; color: white;" align="center">News</h3>
+				<div style="background-color: white; margin-left: 40px; margin-right: 10px;">
+					<ul style="margin-left: 20px; padding: 20px">
+						<li>
+							<a href="">News List</a>
+						</li>
+						<li>
+							<a href="">Add News</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<form method="post" id="EditNewsFormId" name="EditNewsForm">
+				<div style="border: 4px solid #c3c3c3; margin-left: 250px; margin-right: 80px;">
+					<div>
+						<table class="view" style="width: 100%;">
+							<tr>
+								<th class="view">
+									<label for="titleTextId">News Title</label>
+								</th>
+								<td style=" padding-right: 30px;">
+									<input type="text" id="titleTextId" name="newsTitle" maxlength="100" style="width:100%">	
+								</td>
+							</tr>
+							<tr>
+								<th class="view">
+									<label for="dateId">News Date</label>
+								</th>
+								<td>
+									<input type="date" id="dateId" name="newsDate">
+									<script type="text/javascript">
+										document.getElementById("dateId").value = new Date().toLocaleDateString('en-ca')
+									</script>
+								</td>
+							</tr>
+							<tr>
+								<th class="view">
+									<label for="briefId">Brief</label>
+								</th>
+								<td style=" padding-right: 30px;">
+									<textarea id="briefId" name="newsBrief" style="resize: none; width: 100%;" form="EditNewsForm" rows="7" maxlength="500"></textarea>
+								</td>
+							</tr>
+
+							<tr>
+								<th class="view">
+									<label for="contentId">Content</label>
+								</th>
+								<td style=" padding-right: 30px;">
+									<textarea id="contentId" name="newsBrief" style="resize: none; width: 100%;" form="EditNewsForm" rows="30" maxlength="2048"></textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div align="center">
+						<form id="editNewsFormId" name="editNewsForm" method="post">
+							<input type="hidden" name="newsId" value="1">
+							<input type="submit" name="action" value="SAVE">
+							<input type="submit" name="action" value="CANCEL">
+						</form>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

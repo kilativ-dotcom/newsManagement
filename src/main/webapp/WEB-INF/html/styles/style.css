@@ -1,0 +1,19 @@
+th.view {
+	width: 100px;
+	vertical-align: top;
+	text-align: left;
+	color: #666666;
+}
+
+td.view {
+}
+
+table.view {
+    border-collapse: separate;
+    border-spacing: 1px 10px;
+}
+
+.newsPreview {
+	border: 1px solid #444444;
+	background-color: #eeeeee;
+}
