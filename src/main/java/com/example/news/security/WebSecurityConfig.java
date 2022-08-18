@@ -17,7 +17,7 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import javax.sql.DataSource;
 
 
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserService userService;
 
@@ -29,14 +29,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.DELETE + "/**").authenticated()
-                .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.EDIT + "/**").authenticated()
-                .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.ADD + "/**").authenticated()
-                .antMatchers("/resources/**").permitAll()
+                    .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.DELETE + "/**").authenticated()
+                    .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.EDIT + "/**").authenticated()
+                    .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.ADD + "/**").authenticated()
+                    .antMatchers("/resources/**").permitAll()
                 .and()
-                .formLogin()
+                    .formLogin()
                 .and()
-                .logout().logoutSuccessUrl("/" + JspConstants.SITE_BASENAME)
+                    .logout().logoutSuccessUrl("/" + JspConstants.SITE_BASENAME)
         ;
     }
 
