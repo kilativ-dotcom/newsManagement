@@ -1,7 +1,5 @@
 package com.example.news.presentation.form;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.OptBoolean;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -26,10 +24,6 @@ public class NewsForm {
     @Size(min=1, max=2048)
     private String content;
 
-    public String getTitle() {
-        return title;
-    }
-
     @Override
     public String toString() {
         return "NewsForm{" +
@@ -38,6 +32,10 @@ public class NewsForm {
                 ", brief='" + brief + '\'' +
                 ", content='" + content + '\'' +
                 '}';
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {

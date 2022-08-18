@@ -97,7 +97,7 @@
                 <fmt:message key='label.SAVE' var="save"/>
                 <input type="submit" name="action" value="${save}">
                 <form method="get"
-                      action="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}/${JspConstants.VIEW}">
+                      action="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}">
                     <fmt:message key='label.CANCEL' var="cancel"/>
                     <input type="submit" name="action" value="${cancel}">
                 </form>

@@ -6,12 +6,18 @@ import com.example.news.presentation.form.NewsForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
 public class NewsService {
-    @Autowired
+
     private NewsRepository newsRepository;
+
+    @Autowired
+    public void setNewsRepository(NewsRepository newsRepository) {
+        this.newsRepository = newsRepository;
+    }
 
     public News save(News news){
         return newsRepository.save(news);
@@ -50,9 +56,7 @@ public class NewsService {
     }
 
     public void delete(long[] ids){
-        for (long id : ids){
-            delete(id);
-        }
+        Arrays.stream(ids).forEach(this::delete);
     }
 
 }

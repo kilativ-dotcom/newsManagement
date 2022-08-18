@@ -13,7 +13,7 @@
     <div class="linksPanelBody">
         <ul class="linksPanelBodyContent">
             <li>
-                <a href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}/${JspConstants.VIEW}"><fmt:message key='label.newsList'/></a>
+                <a href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}"><fmt:message key='label.newsList'/></a>
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}/${JspConstants.ADD}"><fmt:message key='label.addNews'/></a>

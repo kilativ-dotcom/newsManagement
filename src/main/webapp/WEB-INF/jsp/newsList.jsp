@@ -26,7 +26,7 @@
 
     <div class="newsPreviewList">
         <c:forEach var="news" items="${requestScope[JspConstants.NEWS_LIST_ATTRIBUTE]}">
-            <a href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}/${JspConstants.VIEW}/${news.id}"
+            <a href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}/${news.id}"
                style="text-decoration: none; color: black; background-color: #eeeeee;">
                 <div class="newsPreview">
                     <div class="newsPreviewHead">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="newsPreviewManagePanel">
                             <a class="newsPreviewManageElement"
-                               href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}/${JspConstants.VIEW}/${news.id}"><fmt:message key='label.view'/></a>
+                               href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}/${news.id}"><fmt:message key='label.view'/></a>
                             <a class="newsPreviewManageElement"
                                href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}/${JspConstants.EDIT}/${news.id}"><fmt:message key='label.edit'/></a>
                             <input type="checkbox" name="deleteNewsId" form="deleteNewsFormId" value="${news.id}">

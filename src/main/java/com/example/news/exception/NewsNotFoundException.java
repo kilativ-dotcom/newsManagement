@@ -2,7 +2,7 @@ package com.example.news.exception;
 
 public class NewsNotFoundException extends RuntimeException{
 
-    private Long id;
+    private final Long id;
 
     public NewsNotFoundException(Long id) {
         super(id + " not found");
