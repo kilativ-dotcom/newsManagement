@@ -12,23 +12,26 @@ public class JspConstants {
     public static final String JSP_LIST = "newsList";
     public static final String JSP_VIEW = "newsView";
     public static final String JSP_EDIT = "newsEdit";
+    public static final String JSP_LOGIN = "login";
+    public static final String JSP_REGISTRATION = "registration";
     public static final String JSP_404 = "errors" + File.separator + "pageNotFound";
 
 
-    public static final String HOST = "http://localhost:8087";
     public static final String SITE_BASENAME = "news";
-    public static final String VIEW = "view";
     public static final String EDIT = "edit";
     public static final String ADD = "add";
     public static final String DELETE = "delete";
     public static final String LOCALE = "locale";
     public static final String CHANGE = "change";
+    public static final String LOGIN = "login";
+    public static final String REGISTRATION = "registration";
 
     public static final String LOCALE_ATTRIBUTE = "localeAttribute";
     public static final String NEWS_LIST_ATTRIBUTE = "newsList";
     public static final String NEWS_ATTRIBUTE = "newsEntity";
     public static final String NEWS_FORM_ATTRIBUTE = "newsForm";
     public static final String NEWS_ID_ATTRIBUTE = "newsId";
+    public static final String USER_FORM_ATTRIBUTE = "userForm";
 }
 
 

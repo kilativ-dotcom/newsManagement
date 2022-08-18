@@ -102,3 +102,7 @@ table.view {
     font-size: 18px;
     color: #ee0228;
 }
+
+.center {
+    text-align: center;
+}

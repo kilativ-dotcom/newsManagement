@@ -20,10 +20,16 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserService userService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -41,44 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JdbcUserDetailsManager userDetailsManager(DataSource dataSource) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        UserDetails user = User.builder()
-                .username("user")
-                .password(encoder.encode("1"))
-                .roles("USER")
-                .build();
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(encoder.encode("starwars"))
-                .roles("USER", "ADMIN")
-                .build();
-
-        JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
-
-        if(userDetailsManager.userExists(user.getUsername())) {
-            userDetailsManager.deleteUser(user.getUsername());
-        }
-
-        if(userDetailsManager.userExists(admin.getUsername())) {
-            userDetailsManager.deleteUser(admin.getUsername());
-        }
-
-        userDetailsManager.createUser(user);
-        userDetailsManager.createUser(admin);
-
-        return userDetailsManager;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
         authenticationProvider.setUserDetailsService(userService);
         return authenticationProvider;
     }

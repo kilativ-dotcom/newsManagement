@@ -11,9 +11,11 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/styles/style.css" >
 <div>
     <header>
-        <div style="margin-left: 30px">
-            <h2 style="color: blue"><fmt:message key='title.newsManagement'/></h2>
-        </div>
+        <a href="${pageContext.request.contextPath}/${JspConstants.SITE_BASENAME}">
+            <div style="margin-left: 30px">
+                <h2 style="color: blue"><fmt:message key='title.newsManagement'/></h2>
+            </div>
+        </a>
         <div align="right">
             locale = <c:out value="${sessionScope[JspConstants.LOCALE_ATTRIBUTE]}"/>
             <br/>
