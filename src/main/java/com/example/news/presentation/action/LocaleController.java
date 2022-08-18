@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = JspConstants.LOCALE)
@@ -27,14 +28,16 @@ public class LocaleController {
 //        System.out.println("user.getPassword() = " + user.getPassword());
 //        System.out.println("user.getAuthorities() = " + user.getAuthorities());
 
-        session.setAttribute(JspConstants.LOCALE_ATTRIBUTE, newLocale);
-
+        synchronized (session){
+            session.setAttribute(JspConstants.LOCALE_ATTRIBUTE, newLocale);
+        }
 
 
         if (null != referer) {
-            return ControllerUtils.redirect(referer.replace(JspConstants.HOST + "/", ""));
+            String[] split = referer.split("://", 2);
+            return ControllerUtils.redirect("/" + split[split.length-1]);
         } else {
-            return ControllerUtils.redirect(JspConstants.SITE_BASENAME, JspConstants.VIEW);
+            return ControllerUtils.redirect(JspConstants.SITE_BASENAME);
         }
     }
 

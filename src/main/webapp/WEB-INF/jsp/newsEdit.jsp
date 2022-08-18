@@ -52,7 +52,8 @@
                                            form="EditNewsFormId" rows="3" maxlength="100"/>
                         </td>
                     </tr>
-                    <tr><form:errors path="title" element="h1" cssClass="formError"/></tr>
+                    <tr>
+                        <td></td><td><form:errors path="title" element="h1" cssClass="formError"/></td></tr>
                     <tr>
                         <th class="view">
                             <form:label path="date" for="dateId"><fmt:message key="label.date"/></form:label>
@@ -67,7 +68,8 @@
                             </script>
                         </td>
                     </tr>
-                    <tr><form:errors path="date" element="h1"/></tr>
+                    <tr>
+                        <td></td><td><form:errors path="date" element="h1" cssClass="formError"/></td></tr>
                     <tr>
                         <th class="view">
                             <form:label path="brief" for="briefId"><fmt:message key="label.brief"/></form:label>
@@ -78,7 +80,8 @@
                                            form="EditNewsFormId" rows="7" maxlength="500"/>
                         </td>
                     </tr>
-                    <tr><form:errors path="brief" element="h1"/></tr>
+                    <tr>
+                        <td></td><td><form:errors path="brief" element="h1" cssClass="formError"/></td></tr>
                     <tr>
                         <th class="view">
                             <form:label path="content" for="contentId"><fmt:message key="label.content"/></form:label>
@@ -89,7 +92,8 @@
                                            form="EditNewsFormId" rows="30" maxlength="2048"/>
                         </td>
                     </tr>
-                    <tr><form:errors path="content" element="h1"/></tr>
+                    <tr>
+                        <td></td><td><form:errors path="content" element="h1" cssClass="formError"/></td></tr>
                 </table>
             </div>
             <div align="center">
