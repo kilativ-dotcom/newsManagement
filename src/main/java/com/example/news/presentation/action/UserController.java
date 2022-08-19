@@ -55,7 +55,6 @@ public class UserController {
             usernames.remove(principal.getName()); // to disable ability to delete yourself
         }
         userService.deleteByUsername(usernames);
-        System.out.println("usernames = \n" + usernames);
         return ControllerUtils.redirect(JspConstants.USER);
     }
 
@@ -113,5 +112,10 @@ public class UserController {
         Authentication token = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), null, userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(token);
         return ControllerUtils.redirect(JspConstants.SITE_BASENAME);
+    }
+
+    @GetMapping(JspConstants.LOGIN)
+    public String startLogin() {
+        return JspConstants.JSP_LOGIN;
     }
 }
