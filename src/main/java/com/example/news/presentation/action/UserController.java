@@ -1,6 +1,7 @@
 package com.example.news.presentation.action;
 
 import com.example.news.constants.JspConstants;
+import com.example.news.exception.UserNotFoundException;
 import com.example.news.exception.ValidationException;
 import com.example.news.model.Role;
 import com.example.news.model.User;
@@ -11,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -51,7 +51,7 @@ public class UserController {
     public String deleteUsers(
             Principal principal,
             @RequestParam(value = "deleteUsername", defaultValue = "") List<String> usernames) {
-        if (null != principal && usernames.contains(principal.getName())) {
+        if (null != principal) {
             usernames.remove(principal.getName()); // to disable ability to delete yourself
         }
         userService.deleteByUsername(usernames);
@@ -63,11 +63,11 @@ public class UserController {
     public String editUser(
             @PathVariable String username,
             Map<String, Object> model
-    ){
+    ) throws UserNotFoundException {
         List<Role> roles = Arrays.asList(Role.values());
         model.put(JspConstants.ROLES_ATTRIBUTE, roles);
 
-        User user = userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        User user = userService.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
         model.put(JspConstants.USER, user);
 
         return JspConstants.JSP_USER_EDIT;
@@ -78,8 +78,8 @@ public class UserController {
             Principal principal,
             @PathVariable String username,
             @RequestParam(value = "role", defaultValue = "") Set<String> roles
-    ){
-        User user = userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
+    ) throws UserNotFoundException {
+        User user = userService.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
         if (principal != null && principal.getName().equals(username) && user.getRoles().contains(Role.ROLE_ADMIN)) {
             roles.add(Role.ROLE_ADMIN.getAuthority()); // to disable ability to take ADMIN rights from yourself
         }
