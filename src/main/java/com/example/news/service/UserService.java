@@ -70,10 +70,14 @@ public class UserService implements UserDetailsService {
     }
 
     public User updateRoles(User user, Set<String> roles) {
-        Set<Role> roleSet = roles.stream()
-                .map(Role::valueOf)
-                .collect(Collectors.toSet());
-        user.setRoles(roleSet);
+        user.getRoles().clear();
+        for (String role : roles) {
+            try {
+                user.addRole(Role.valueOf(role));
+            } catch (IllegalArgumentException e){
+                // role from set is illegal
+            }
+        }
         return userRepository.save(user);
     }
 
