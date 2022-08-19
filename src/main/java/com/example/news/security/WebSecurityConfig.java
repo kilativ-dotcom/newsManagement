@@ -1,6 +1,7 @@
 package com.example.news.security;
 
 import com.example.news.constants.JspConstants;
+import com.example.news.model.Role;
 import com.example.news.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -8,13 +9,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-
-import javax.sql.DataSource;
 
 
 @EnableWebSecurity
@@ -35,14 +30,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                    .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.DELETE + "/**").authenticated()
-                    .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.EDIT + "/**").authenticated()
-                    .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.ADD + "/**").authenticated()
-                    .antMatchers("/resources/**").permitAll()
-                .and()
-                    .formLogin()
-                .and()
-                    .logout().logoutSuccessUrl("/" + JspConstants.SITE_BASENAME)
+                .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.DELETE + "/**")
+                    .hasAnyAuthority(Role.ROLE_ADMIN.getAuthority(), Role.DELETE_NEWS.getAuthority())
+
+                .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.EDIT + "/**")
+                    .hasAnyAuthority(Role.ROLE_ADMIN.getAuthority(), Role.CHANGE_NEWS.getAuthority())
+
+                .antMatchers("/" + JspConstants.SITE_BASENAME + "/" + JspConstants.ADD + "/**")
+                    .hasAnyAuthority(Role.ROLE_ADMIN.getAuthority(), Role.CREATE_NEWS.getAuthority())
+
+                .antMatchers("/" + JspConstants.USER + "/**")
+                    .hasAuthority(Role.ROLE_ADMIN.getAuthority())
+
+                .antMatchers("/resources/**")
+                    .permitAll()
+            .and()
+                .formLogin()
+            .and()
+                .logout().logoutSuccessUrl("/" + JspConstants.SITE_BASENAME)
         ;
     }
 

@@ -17,8 +17,25 @@
             </div>
         </a>
         <div align="right">
-            locale = <c:out value="${sessionScope[JspConstants.LOCALE_ATTRIBUTE]}"/>
-            <br/>
+            <c:set var="loggedInUsername" value="${requestScope[JspConstants.LOGGED_IN_USERNAME_ATTRIBUTE]}"/>
+            <c:choose>
+                <c:when test="${loggedInUsername ne null}">
+                    <fmt:message key='message.greeting'/> <c:out value="${loggedInUsername}"/><br/>
+                    <fmt:message key='label.logout' var="logout"/>
+                    <a href="${pageContext.request.contextPath}/logout"><c:out value="${logout}"/></a>
+                    <br/>
+                    <br/>
+                    <br/>
+                </c:when>
+                <c:otherwise>
+                    <fmt:message key='label.login' var="login"/>
+                    <a href="${pageContext.request.contextPath}/login"><c:out value="${login}"/></a>
+                    <br/>
+                    <br/>
+                    <br/>
+                </c:otherwise>
+            </c:choose>
+
             <a class="languageSelector" href="${pageContext.request.contextPath}/${JspConstants.LOCALE}/${JspConstants.CHANGE}/en">English</a>
             <a class="languageSelector" href="${pageContext.request.contextPath}/${JspConstants.LOCALE}/${JspConstants.CHANGE}/ru">Русский</a>
         </div>
