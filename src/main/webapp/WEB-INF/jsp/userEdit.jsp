@@ -34,24 +34,25 @@
                     <fmt:message key='label.username' var="username"/>
                     <c:out value="${username}"/>
                 </th>
-                <c:forEach var="role" items="${requestScope[JspConstants.ROLES_ATTRIBUTE]}">
-                    <th><c:out value="${role}"/></th>
-                </c:forEach>
-            </tr>
-            <tr>
                 <td><c:out value="${user.username}"/></td>
-                <c:forEach var="role" items="${requestScope[JspConstants.ROLES_ATTRIBUTE]}">
+
+                <td>
+                    <fmt:message key='label.SAVE' var="save"/>
+                    <input type="submit" name="submit" value="${save}">
+                </td>
+            </tr>
+            <c:forEach var="role" items="${requestScope[JspConstants.ROLES_ATTRIBUTE]}">
+                <tr>
+                    <th><c:out value="${role}"/></th>
                     <td><input type="checkbox" name="role" value="${role}"
                             <c:if test="${user.roles.contains(role)}">
                                 checked
                             </c:if>
                     /></td>
-                </c:forEach>
-            </tr>
+                </tr>
+            </c:forEach>
         </table>
 
-        <fmt:message key='label.SAVE' var="save"/>
-        <input type="submit" name="submit" value="${save}">
     </form:form>
 
 </div>
