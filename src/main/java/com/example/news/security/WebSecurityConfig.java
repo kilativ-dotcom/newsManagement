@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .hasAnyAuthority(Role.ROLE_ADMIN.getAuthority(), Role.CREATE_NEWS.getAuthority())
 
                 .antMatchers("/" + JspConstants.USER + "/**")
-                    .hasAuthority(Role.ROLE_ADMIN.getAuthority())
+                    .hasAnyAuthority(Role.ROLE_ADMIN.getAuthority(), Role.MANAGE_USERS.getAuthority())
 
                 .antMatchers("/resources/**")
                     .permitAll()

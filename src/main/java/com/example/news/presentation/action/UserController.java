@@ -79,8 +79,8 @@ public class UserController {
             @RequestParam(value = "role", defaultValue = "") Set<String> roles
     ) throws UserNotFoundException {
         User user = userService.findByUsername(username).orElseThrow(() -> new UserNotFoundException(username));
-        if (principal != null && principal.getName().equals(username) && user.getRoles().contains(Role.ROLE_ADMIN)) {
-            roles.add(Role.ROLE_ADMIN.getAuthority()); // to disable ability to take ADMIN rights from yourself
+        if (principal != null && principal.getName().equals(username) && user.getRoles().contains(Role.MANAGE_USERS)) {
+            roles.add(Role.MANAGE_USERS.getAuthority()); // to disable ability to take MANAGE_USERS authority from yourself
         }
         user = userService.updateRoles(user, roles);
 
