@@ -31,6 +31,16 @@ public class NewsService {
         return newsRepository.findById(id);
     }
 
+    public void delete(long id){
+        if (newsRepository.existsById(id)) {
+            newsRepository.deleteById(id);
+        }
+    }
+
+    public void delete(long[] ids){
+        Arrays.stream(ids).forEach(this::delete);
+    }
+
     public News newsFromForm(NewsForm newsForm){
         News news = new News();
         news.setTitle(newsForm.getTitle());
@@ -47,16 +57,6 @@ public class NewsService {
         newsForm.setBrief(news.getBrief());
         newsForm.setContent(news.getContent());
         return newsForm;
-    }
-
-    public void delete(long id){
-        if (newsRepository.existsById(id)) {
-            newsRepository.deleteById(id);
-        }
-    }
-
-    public void delete(long[] ids){
-        Arrays.stream(ids).forEach(this::delete);
     }
 
 }

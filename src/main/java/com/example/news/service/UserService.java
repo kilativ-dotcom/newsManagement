@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -42,6 +41,19 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = findByUsername(username).orElseThrow(
+                () -> new UsernameNotFoundException("Cannot find user " + username)
+        );
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.getRoles()
+        );
+    }
+
     public User registerUser(UserForm form) throws ValidationException {
         String username = form.getUsername();
         String password = form.getPassword();
@@ -56,17 +68,6 @@ public class UserService implements UserDetailsService {
         user.setRoles(new HashSet<>());
         user.addRole(Role.ROLE_USER);
         return userRepository.save(user);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Cannot find user " + username));
-
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                user.getRoles()
-        );
     }
 
     public User updateRoles(User user, Set<String> roles) {

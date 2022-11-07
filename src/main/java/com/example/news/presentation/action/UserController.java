@@ -50,7 +50,10 @@ public class UserController {
     @PostMapping(JspConstants.USER)
     public String deleteUsers(
             Principal principal,
-            @RequestParam(value = "deleteUsername", defaultValue = "") List<String> usernames) {
+            @RequestParam(
+                    value = "deleteUsername",
+                    defaultValue = ""
+            ) List<String> usernames) {
         if (null != principal) {
             usernames.remove(principal.getName()); // to disable ability to delete yourself
         }
