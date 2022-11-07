@@ -24,14 +24,10 @@
                     <fmt:message key='label.logout' var="logout"/>
                     <a href="${pageContext.request.contextPath}/logout"><c:out value="${logout}"/></a>
                     <br/>
-                    <br/>
-                    <br/>
                 </c:when>
                 <c:otherwise>
                     <fmt:message key='label.login' var="login"/>
                     <a href="${pageContext.request.contextPath}/login"><c:out value="${login}"/></a>
-                    <br/>
-                    <br/>
                     <br/>
                 </c:otherwise>
             </c:choose>
