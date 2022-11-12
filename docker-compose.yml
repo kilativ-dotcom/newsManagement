@@ -15,7 +15,7 @@ services:
       - custom
   web:
     build: .
-    container_name: news-service
+    container_name: WebService
     networks:
       - custom
     restart: always
