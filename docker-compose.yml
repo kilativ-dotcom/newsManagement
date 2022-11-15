@@ -2,31 +2,20 @@ version: "3.8"
 services:
   mysql:
     image: mysql:5.7
-    restart: always
-    container_name: "mysql"
     volumes:
       - "./db:/var/lib/mysql"
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=db_news
-      - MYSQL_USER=javauser
-      - MYSQL_PASSWORD=JavaUser1
+    env_file:
+      - ./mysql.env
     networks:
       - custom
   web:
     build: .
-    container_name: WebService
     networks:
       - custom
-    restart: always
     ports:
       - "127.111.111.111:80:8080"
-    environment:
-      - DB_PORT=3306
-      - DB_NAME=db_news
-      - DB_HOST=mysql
-      - MYSQL_USER=javauser
-      - MYSQL_USER_PASSWORD=JavaUser1
+    env_file:
+      - ./web.env
     depends_on:
       - mysql
 
